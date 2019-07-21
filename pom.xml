@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.it</groupId>
+    <artifactId>sbcm</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>eureka</module>
+        <module>user</module>
+        <module>common</module>
+        <module>data</module>
+        <module>task</module>
+        <module>adapter</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <sbcm.version>1.0-SNAPSHOT</sbcm.version>
+        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+        <package.base.url>/Users/idea/tomcat/deploy</package.base.url>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- common -->
+            <dependency>
+                <groupId>com.it</groupId>
+                <artifactId>common</artifactId>
+                <version>${sbcm.version}</version>
+            </dependency>
+
+            <!-- dao -->
+            <dependency>
+                <groupId>com.it</groupId>
+                <artifactId>data</artifactId>
+                <version>${sbcm.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.it</groupId>
+                <artifactId>adapter</artifactId>
+                <version>${sbcm.version}</version>
+            </dependency>
+
+            <dependency>
+                <!-- 默认应该是spring-boot-starter-parent包含了大量配置好的依赖管理
+                如果您不想使用spring-boot-starter-parent，您仍然可以通过spring-boot-dependencies
+                使用scope=import依赖项来保持依赖项管理
+                -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.1.5.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--spring-cloud-dependencies是Spring-cloud的依赖合集-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>

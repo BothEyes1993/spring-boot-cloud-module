@@ -1,0 +1,36 @@
+server:
+  #配置服务器启动端口
+  port: 8222
+  #配置访问的上下文路径，就是localhost:8028后面需要的上下文路径
+  servlet:
+    context-path: /
+
+# 数据库连接配置，Spring Boot 会自动加载 spring.datasource.* 相关配置，数据源就会自动注入到 sqlSessionFactory 中，sqlSessionFactory 会自动注入到 Mapper 中
+spring:
+  #指定服务名称为Server-Provider-User
+  application:
+    name: Server-Provider-User
+  datasource:
+    url: "jdbc:mysql://1.1.1.1:3306"
+    username: "addmin"
+    password: "12345"
+
+# 数据库连接配置
+mybatis:
+  #实体类映射文件的地址
+  mapper-locations: classpath*:com/sbcm/**/mapper/*/*.xml
+  #指定 Mybatis 基础配置文件
+  config-locations: classpath*:mybatis-config.xml
+  #这个是相当于给vo 中的类起了一个别名。别名的规范就是：类名首字母小写。注意：要将mapper.xml 和 mapper.Java 写在同一个目录下才可以使用。
+  type-aliases-package: com.sbcm.vo
+  #分页插件
+  plugins: PageInterceptor
+
+eureka:
+  client:
+    #register，fetch 即向服务端注册服务并定时从服务端获取服务缓存到本地，默认就是true。
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      #指定Eureka服务端的地址
+      defaultZone: http://localhost:8111/eureka/

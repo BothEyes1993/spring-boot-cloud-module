@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sbcm.data.dao.user.UserDao">
+
+    
+    <select id="getUser" resultType="com.sbcm.common.vo.user.UserVO">
+        select 
+			u.user_Id       as userId,
+        	u.User_account 	as userName
+        from 
+        	sys_user_t u
+        where 1=1 
+       	<if test='user.userId != null and user.userId!=0L'>
+       		and u.user_id = #{user.userId}
+       	</if>
+    </select>
+
+</mapper>
